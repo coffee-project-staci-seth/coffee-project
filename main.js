@@ -1,12 +1,22 @@
 "use strict"
+
 function renderCoffee(coffee) {
-    let html = '<section class="coffee">';
-    html += `<data-id>${coffee.id}</data-id>`;
-    html += `<h3>${coffee.name}</h3>`;
-    html += `<p>${coffee.roast}</p>`;
-    html += '</section>';
+    // let html = '<tr class="coffee">';
+    // html += `<td>${coffee.id}</td>`;
+    // html += `<td>${coffee.name}</td>`;
+    // html += `<td>${coffee.roast}</td>`;
+    // html += '</tr>';
+    //
+    // return html;
+    let html = `
+    <div>
+        <h3>${coffee.name}</h3>
+        <p>${coffee.roast}</p>
+    </div>
+    `;
     return html;
 }
+
 
 function renderCoffees(coffees) {
     let html = '';
@@ -26,20 +36,6 @@ function updateCoffees(e) {
         }
     });
     section.innerHTML = renderCoffees(filteredCoffees);
-}
-
-function searchCoffees(event) {
-    event.preventDefault();
-    let html = "";
-    let coffeeName = document.querySelector("#coffee-name").value
-    for (coffee of coffees) {
-        if (coffeeName === coffees.name) {
-            html = `<section>`;
-            html += `<h3>${coffee.name}</h3>`;
-            html += `</section>`;
-        }
-    }
-    return html;
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
