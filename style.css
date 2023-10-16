@@ -1,7 +1,18 @@
+body {
+   background-image: url("images/cup-and-saucer.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .page-container {
     min-height: 100dvh;
     padding: 20px;
 }
-nav {
-    text-align: center;
+.navigation {
+    background-color: #000;
+    opacity: .5;
 }
+
+
+
