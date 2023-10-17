@@ -13,7 +13,7 @@ function renderCoffee(coffee) {
 
 function renderCoffees(coffees) {
 	let html = '';
-	for (let i = coffees.length - 1; i >= 0; i--) {
+	for (let i = 0; i < coffees.length; i++) {
 		html += renderCoffee(coffees[i]);
 	}
 	return html;
@@ -43,6 +43,35 @@ function searchCoffees(event) {
 	section.innerHTML = renderCoffees(searchedCoffees);
 }
 
+// function addCoffee(event) {
+// 	event.preventDefault();
+// 	coffees.push ({
+// 		id: coffeeID,
+// 		name: newCoffeeName,
+// 		roast: 	roastType
+// 	})
+// }
+
+function searchRoasts(event) {
+	event.preventDefault(); // don't submit the form, we just want to update the data
+	const selectedRoast = roastSelection.value;
+	const lightRoasts = [];
+	const mediumRoasts = [];
+	const darkRoasts = [];
+	coffees.forEach(coffee => {
+		if (coffee.roast === "light") {
+			lightRoasts.push(coffee);
+			section.innerHTML = renderCoffees(lightRoasts);
+		} else if (coffee.roast === "medium") {
+			mediumRoasts.push(coffee);
+			section.innerHTML = renderCoffees(mediumRoasts);
+		 } else if (coffee.roast === "dark") {
+			darkRoasts.push(coffee);
+			section.innerHTML = renderCoffees(darkRoasts);
+		}
+	});
+}
+
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 const coffees = [
 	{id: 1, name: 'Light City', roast: 'light'},
@@ -66,10 +95,16 @@ const submitButton = document.querySelector('#submit');
 const searchButton = document.querySelector('#submit')
 const roastSelection = document.querySelector('#roast-selection');
 const userSearchInput = document.querySelector("#coffee-search");
+// const roastTypeInput = document.querySelector();
+// let roastType = roastTypeInput.value;
+// const newCoffeeNameInput = document.querySelector();
+// let newCoffeeName = newCoffeeNameInput.value;
+// let coffeeID = coffees.length[coffees.length-1];
 
 section.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
 userSearchInput.addEventListener('input', searchCoffees)
 searchButton.addEventListener('click', searchCoffees);
+roastSelection.addEventListener('click', searchRoasts);
 
