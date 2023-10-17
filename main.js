@@ -54,7 +54,7 @@ function searchCoffees(event) {
 
 function searchRoasts(event) {
 	event.preventDefault(); // don't submit the form, we just want to update the data
-	const selectedRoast = roastSelection.value;
+	// const selectedRoast = roastSelection.value;
 	const lightRoasts = [];
 	const mediumRoasts = [];
 	const darkRoasts = [];
@@ -93,8 +93,11 @@ const coffees = [
 const section = document.querySelector('#coffees');
 const submitButton = document.querySelector('#submit');
 const searchButton = document.querySelector('#submit')
-const roastSelection = document.querySelector('#roast-selection');
+// const roastSelection = document.querySelector('#roast-selection');
 const userSearchInput = document.querySelector("#coffee-search");
+const roastLightImg = document.querySelector("#light");
+const roastMediumImg = document.querySelector("#medium");
+const roastDarkImg = document.querySelector("#dark");
 // const roastTypeInput = document.querySelector();
 // let roastType = roastTypeInput.value;
 // const newCoffeeNameInput = document.querySelector();
@@ -104,7 +107,11 @@ const userSearchInput = document.querySelector("#coffee-search");
 section.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
-userSearchInput.addEventListener('input', searchCoffees)
+userSearchInput.addEventListener('input', searchCoffees);
 searchButton.addEventListener('click', searchCoffees);
-roastSelection.addEventListener('click', searchRoasts);
+roastLightImg.addEventListener('click', searchRoasts);
+roastMediumImg.addEventListener('click', searchRoasts);
+roastDarkImg.addEventListener('click', searchRoasts);
+
+// roastSelection.addEventListener('click', searchRoasts);
 
