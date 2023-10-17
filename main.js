@@ -1,4 +1,5 @@
-"use strict"
+"use strict";
+
 
 function renderCoffee(coffee) {
 	let html = `
@@ -10,7 +11,7 @@ function renderCoffee(coffee) {
 	return html;
 }
 
-
+// Dynamically generate coffee list
 function renderCoffees(coffees) {
 	let html = '';
 	for (let i = 0; i < coffees.length; i++) {
@@ -19,9 +20,10 @@ function renderCoffees(coffees) {
 	return html;
 }
 
-function updateCoffees(e) {
-	e.preventDefault(); // don't submit the form, we just want to update the data
-	const selectedRoast = roastSelection.value;
+// Filters coffee by roast type
+function updateCoffees(event) {
+	event.preventDefault(); // don't submit the form, we just want to update the data
+	let selectedRoast = event.target.id;
 	const filteredCoffees = [];
 	coffees.forEach(coffee => {
 		if (coffee.roast === selectedRoast) {
@@ -31,6 +33,7 @@ function updateCoffees(e) {
 	section.innerHTML = renderCoffees(filteredCoffees);
 }
 
+// Filters coffee by user input
 function searchCoffees(event) {
 	event.preventDefault();
 	let coffeeChoice = userSearchInput.value;
@@ -43,34 +46,6 @@ function searchCoffees(event) {
 	section.innerHTML = renderCoffees(searchedCoffees);
 }
 
-// function addCoffee(event) {
-// 	event.preventDefault();
-// 	coffees.push ({
-// 		id: coffeeID,
-// 		name: newCoffeeName,
-// 		roast: 	roastType
-// 	})
-// }
-
-function searchRoasts(event) {
-	event.preventDefault(); // don't submit the form, we just want to update the data
-	// const selectedRoast = roastSelection.value;
-	const lightRoasts = [];
-	const mediumRoasts = [];
-	const darkRoasts = [];
-	coffees.forEach(coffee => {
-		if (coffee.roast === "light") {
-			lightRoasts.push(coffee);
-			section.innerHTML = renderCoffees(lightRoasts);
-		} else if (coffee.roast === "medium") {
-			mediumRoasts.push(coffee);
-			section.innerHTML = renderCoffees(mediumRoasts);
-		 } else if (coffee.roast === "dark") {
-			darkRoasts.push(coffee);
-			section.innerHTML = renderCoffees(darkRoasts);
-		}
-	});
-}
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 const coffees = [
@@ -93,25 +68,13 @@ const coffees = [
 const section = document.querySelector('#coffees');
 const submitButton = document.querySelector('#submit');
 const searchButton = document.querySelector('#submit')
-// const roastSelection = document.querySelector('#roast-selection');
+const roastSelection = document.querySelector('#roast-selection');
 const userSearchInput = document.querySelector("#coffee-search");
-const roastLightImg = document.querySelector("#light");
-const roastMediumImg = document.querySelector("#medium");
-const roastDarkImg = document.querySelector("#dark");
-// const roastTypeInput = document.querySelector();
-// let roastType = roastTypeInput.value;
-// const newCoffeeNameInput = document.querySelector();
-// let newCoffeeName = newCoffeeNameInput.value;
-// let coffeeID = coffees.length[coffees.length-1];
 
 section.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener('click', updateCoffees);
 userSearchInput.addEventListener('input', searchCoffees);
 searchButton.addEventListener('click', searchCoffees);
-roastLightImg.addEventListener('click', searchRoasts);
-roastMediumImg.addEventListener('click', searchRoasts);
-roastDarkImg.addEventListener('click', searchRoasts);
-
-// roastSelection.addEventListener('click', searchRoasts);
+roastSelection.addEventListener('click', updateCoffees);
 
